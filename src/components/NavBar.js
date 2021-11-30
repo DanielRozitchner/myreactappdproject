@@ -1,4 +1,5 @@
 import {Navbar, Container, Nav} from "react-bootstrap";
+import CartWidget from "./CartWidget";
 import logo from 'C:/Users/Daniel/Desktop/reactdanielrozitchner/src/assets/imgs/logoC-27.png';
 
 
@@ -13,8 +14,10 @@ const NavBar = () => {
       <Nav className="me-auto">
         <Nav.Link href="#">Contacto</Nav.Link>
         <Nav.Link href="#">Productos</Nav.Link>
+        
       </Nav>
     </Navbar.Collapse>
+    <CartWidget />
   </Container>
 </Navbar>
         </div>
