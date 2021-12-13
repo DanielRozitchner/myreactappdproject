@@ -1,3 +1,6 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Cart from './components/Cart/Cart';
+
 import ItemCount from './components/ItemCount.js/ItemCount';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
@@ -9,12 +12,36 @@ function App() {
   const max = 10
 
   return (
+  <BrowserRouter>
     <div className="App">
       <NavBar />
-      <ItemListContainer greeting='Nuestras Tortas'/>
-      <ItemCount inicial={inicial} max={max} />
-      <ItemDetailContainer />
+      <Routes>
+          <Route
+              exact
+              path="/"
+              element= { <ItemListContainer greeting='Nuestras Tortas'/> }
+           />
+           <Route
+              exact
+              path="/categoria/:idCate"
+              element= { <ItemListContainer greeting='Nuestras Tortas'/> }
+              />
+            <Route
+              exact
+              path="/detalle/:id"
+              element= { <ItemDetailContainer /> }
+              />
+             <Route
+              exact
+              path="/cart"
+              element= { <Cart /> }
+              />
+            
+      </Routes>
     </div>
+    <ItemCount inicial={inicial} max={max} />
+    </BrowserRouter>
+    
   );
 }
 

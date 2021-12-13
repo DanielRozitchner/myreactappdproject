@@ -1,14 +1,29 @@
 
-const ItemDetail = ({ item }) => {
-    console.log("El item", item);
-    console.log(item[0].precio)
-    return (
-      <div className="card">
-        <h3>ItemDetail</h3>
-        <h3>{item[0].cake}</h3>
-        <p>{item[0].precio}</p>
-        <img src={item[0].foto} alt={item[0].foto}></img> 
+
+function ItemDetail({ item }) {
+  return (
+    <div
+      key={item.id}
+            className='col-md-4'
+                                        >
+                <div className="card w-100 mt-5" >
+                    <div className="card-header">
+                        {`${item.cake}`}
+                    </div>
+                    <div className="card-body">
+                        <img src={item.foto} alt='' className='w-50' />
+                            {item.detalle}
+                            {`$${item.precio}`}
+                    </div>
+                    <div className="card-footer">
+                    <button className="btn btn-outline-primary btn-block">
+                      Agregar al Carrito
+                    </button>
+                    
+                    </div>
+                </div>
     </div>
-    );
-  };
-  export default ItemDetail;
+  )
+}
+
+export default ItemDetail
