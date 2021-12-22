@@ -17,10 +17,10 @@ function CartContextProvider( {children} ) {
 
         cartList.splice(index, 1)
 
-        setCartList([...cartList, { ...item, cantidad: item.cantidad + located}])
+        setCartList([...cartList, { ...item, cantidad: item.cantidad + located, precio: (item.precio * located) + (item.precio * item.cantidad)}])
 
       }else {
-        setCartList([...cartList, item])
+        setCartList([...cartList, {...item, precio: item.precio * item.cantidad}])
       }
     
     }

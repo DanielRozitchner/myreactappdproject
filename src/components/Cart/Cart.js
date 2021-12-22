@@ -6,7 +6,7 @@ function Cart() {
     const { cartList, borrarCarrito } = useCartContext()
     return (
         <div>
-            { cartList.map(prod => <li>{prod.cake} {prod.cantidad} {`$${prod.precio}`}</li>)} 
+            { cartList.map(prod => <div>{prod.cake} {prod.cantidad} {`$${prod.precio}`}</div>)} 
             <button onClick={borrarCarrito}>Vaciar carrito </button>
         </div>
     )
