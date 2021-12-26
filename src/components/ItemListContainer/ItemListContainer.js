@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 // import { getFetch } from "../helpers/getFetch"
 import ItemList from '../ItemList/ItemList'
 import { collection, getFirestore, getDocs, where, query } from 'firebase/firestore'
+import { css } from "@emotion/react";
+import { GridLoader } from 'react-spinners';
 
 function ItemListContainer({greeting}) {
     const [productos, setProductos] = useState([])
@@ -47,12 +49,16 @@ function ItemListContainer({greeting}) {
     },[idCate])
        
     return (
-        <div>
-            {greeting} 
+        <div className='container d-flex flex-column align-items-center'>
+           
+            <h1>{greeting} </h1>
             {loading ?
-            <h2>Cargando...</h2>
+            <h2><GridLoader css={css} /></h2>
             :
-            <ItemList productos={productos} />
+            <div className='row row-cols-4'> 
+                <ItemList productos={productos} />
+            </div>
+           
             }
         </div>
         )
