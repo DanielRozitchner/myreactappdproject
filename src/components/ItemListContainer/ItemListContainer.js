@@ -30,7 +30,7 @@ function ItemListContainer({greeting}) {
     useEffect(() => {
         if(idCate) {
         const db = getFirestore()
-        const queryCollection = query(collection(db, 'productos'),where('categoria','===', idCate))
+        const queryCollection = query(collection(db, 'productos'),where('categoria','==', idCate))
         getDocs(queryCollection)
         .then(resp => setProductos( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) ) 
         .catch(err => console.log(err))
