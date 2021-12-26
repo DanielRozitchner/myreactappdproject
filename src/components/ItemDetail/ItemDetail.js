@@ -12,7 +12,6 @@ function ItemDetail({ item }) {
 
   const onAdd = (quantityToAdd) => {
     setGoCart(true); 
-    console.log(quantityToAdd)
     agregarAlCarrito({...item, cantidad: quantityToAdd})
   }
 console.log(cartList)
@@ -33,7 +32,7 @@ console.log(cartList)
                     <div className="card-footer">
                     {!goCart ? (<ItemCount stock={item.stock} onAdd={onAdd} />
                     )
-                    : (<Link to="/cart"><button className="btn btn-outline-primary btn-block">Ir al carrito</button></Link>
+                    : (<Link to="/cart"><button className="btn btn-outline-primary btn-block">Terminar compra</button></Link>
                     )}
                    
                     </div>
