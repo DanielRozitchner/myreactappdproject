@@ -16,20 +16,21 @@ function ItemDetail({ item }) {
   }
 console.log(cartList)
   return (
-    <div
-      key={item.id}
-            className='col-md-4'
+    <div className="d-flex flex-column align-items-center">
+      <div
+        key={item.id}
+            className='col-md-4 '
                                         >
                 <div className="card w-100 mt-5" >
                     <div className="card-header">
                         {`${item.cake}`}
                     </div>
-                    <div className="card-body">
+                    <div className="card-body d-flex flex-column align-items-center">
                         <img src={item.foto} alt='' className='w-50' />
-                            {item.detalle}
-                            {`$${item.precio}`}
+                            <p>{item.detalle}</p>
+                            <h4>Precio:${item.precio}</h4>
                     </div>
-                    <div className="card-footer">
+                    <div className="card-footer d-flex flex-column align-items-center">
                     {!goCart ? (<ItemCount stock={item.stock} onAdd={onAdd} />
                     )
                     : (<Link to="/cart"><button className="btn btn-outline-primary btn-block">Ir al carrito</button></Link>
@@ -37,6 +38,7 @@ console.log(cartList)
                    
                     </div>
                 </div>
+      </div>
     </div>
   )
 }

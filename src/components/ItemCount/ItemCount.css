@@ -1,0 +1,59 @@
+
+.botones {
+    justify-content: center;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 60px 100px 60px;
+    grid-template-rows: 30px 30px;
+    grid-template-areas: 
+        "botonMenos s botonMas "
+        "Agregar Agregar Agregar";
+}
+.botonMenos {
+    background-color: lightcyan;
+    border: 0px;
+    grid-area: botonMenos;
+    border-radius: 5px;
+}
+.botonMenos:focus{
+    color: grey;
+    font-size: 1.2em;
+
+}
+.botonMas {
+    border: 0px;
+    background-color: lightcyan;
+    grid-area: botonMas;
+    border-radius: 5px;
+}
+.botonMas:focus{
+    color: grey;
+    font-size: 1.2em;
+
+}
+span {
+    grid-area: s;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+}
+.Agregar {
+    background-color: lightcyan;
+    grid-area: Agregar;
+    
+
+   
+    
+    
+    
+}
+.Agregar:focus{
+    color: grey;
+    
+}
+
+button:hover {
+    background-color: lightsalmon;
+
+}
+
