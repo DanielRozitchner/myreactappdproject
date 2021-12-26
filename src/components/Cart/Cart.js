@@ -31,8 +31,8 @@ function Cart() {
                 <td>{prod.categoria}</td>
                 <td>{prod.cake}</td>
                 <td>{prod.cantidad}</td>
-                <td>{`$${prod.precio}`}</td>
-                <td>{prod.precio * prod.cantidad}</td>
+                <td>${prod.precio}</td>
+                <td>${prod.precio * prod.cantidad}</td>
                 <td><button onClick={()=> removeItem(prod.id)}>eliminar</button></td>
                 </tr> 
             )}
