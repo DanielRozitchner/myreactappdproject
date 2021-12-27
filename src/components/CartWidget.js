@@ -7,9 +7,9 @@ function CartWidget() {
     
     
     return (
-        <div>
+        <div className="d-flex flex-row align-items-center">
           {cartLength < 1 ? <></> : 
-          <h3>{cartLength}</h3>
+          <span>{cartLength}</span>
           }
             <button className="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
