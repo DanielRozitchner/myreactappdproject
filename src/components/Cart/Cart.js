@@ -1,11 +1,79 @@
 
 import { useCartContext } from "../../context/CartContext"
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import { addDoc, collection, getFirestore, Timestamp, query, where, documentId, writeBatch, doc} from 'firebase/firestore'
+
 
 
 function Cart() {
 
+    const [idOrder, setIdOrder] = useState('')
+    const [dataForm, setDataForm] = useState({
+        name:"", email:"", phone:""
+    })
     const { cartList, borrarCarrito, removeItem, totalPrice} = useCartContext([])
+
+    const handleChange = (e) => {
+        setDataForm({
+            ...dataForm,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const generarOrden = (e) =>{
+        e.preventDefault()  
+        
+        
+        // Nuevo objeto de orders    
+        let orden = {}
+        
+        orden.date = Timestamp.fromDate(new Date())
+        orden.buyer = dataForm
+        orden.total = totalPrice();
+
+        orden.items = cartList.map(cartItem => {
+            const id = cartItem.id;
+            const cake = cartItem.cake;
+            const quant = cartItem.cantidad
+            const price = cartItem.precio * cartItem.cantidad;
+
+            
+            return {id, cake, price, quant}   
+        })
+
+        // Generar la orden 
+        const db = getFirestore()
+        const ordenColeccion = collection(db, 'orders')
+        addDoc(ordenColeccion, orden)
+        .then(resp => setIdOrder(resp.id))
+        .catch(err => console.log(err))
+        .finally(()=> {
+            borrarCarrito()
+            setDataForm({
+                name:"", email:"", phone:""
+            })
+        })
+
+    //actualizacion de stock
+
+        const batch = writeBatch(db)
+        
+        orden.items.map(e=>{
+                let docUpdate = doc(db, 'productos', e.id)
+                let currentStock  = cartList.find(item => item.id === e.id).stock
+                batch.update( docUpdate, {
+                    stock: currentStock - e.quant
+                })
+
+            }) 
+        batch.commit()
+
+
+
+        }
+
+
     return (
         <> {!cartList.length ? <></> :
             <table class="table">
@@ -50,6 +118,32 @@ function Cart() {
                     
                 <button className="btn btn-outline-primary btn-block"  disabled={!cartList.length} onClick={borrarCarrito}>Vaciar carrito</button>        
             
+            
+            <form 
+                onSubmit={generarOrden} 
+                onChange={handleChange} 
+            >
+                <input 
+                    type='text' 
+                    name='name' 
+                    placeholder='name' 
+                    value={dataForm.name}
+                /><br />
+                <input 
+                    type='text' 
+                    name='phone'
+                    placeholder='tel' 
+                    value={dataForm.phone}
+                /><br/>
+                <input 
+                    type='email' 
+                    name='email'
+                    placeholder='email' 
+                    value={dataForm.email}
+                /><br/>
+                <button disabled={!cartList.length} >Generar Orden</button>
+            </form>
+            {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
         </>
     )
 }
