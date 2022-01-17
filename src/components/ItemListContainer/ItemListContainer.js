@@ -7,41 +7,24 @@ import { css } from "@emotion/react";
 import { GridLoader } from 'react-spinners';
 
 function ItemListContainer({greeting}) {
-    const [productos, setProductos] = useState([])
+    const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
 
     const { idCate } = useParams()
-
-    // useEffect(() => {
-    //     if (idCate) {
-    //     getFetch
-    //     .then(resp => setProductos(resp.filter(prod => prod.categoria === idCate)))
-    //     .catch(err => console.log(err))
-    //     .finally(() => setLoading(false))
-
-    //     } else {
-    //     getFetch
-    //     .then(resp => setProductos(resp))
-    //     .catch(err => console.log(err))
-    //     .finally(() => setLoading(false))
-    // }
-    // },[idCate])
-
-
     
     useEffect(() => {
         if(idCate) {
         const db = getFirestore()
-        const queryCollection = query(collection(db, 'productos'),where('categoria','==', idCate))
+        const queryCollection = query(collection(db, 'productos'),where('category','==', idCate))
         getDocs(queryCollection)
-        .then(resp => setProductos( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) ) 
+        .then(resp => setProducts( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) ) 
         .catch(err => console.log(err))
         .finally(()=> setLoading(false))
     } else {
         const db = getFirestore()
         const queryCollection = collection(db, 'productos')
         getDocs(queryCollection)
-        .then(resp => setProductos( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) ) 
+        .then(resp => setProducts( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) ) 
         .catch(err => console.log(err))
         .finally(()=> setLoading(false))}
         
@@ -56,7 +39,7 @@ function ItemListContainer({greeting}) {
             <h2><GridLoader css={css} /></h2>
             :
             <div className='row row-cols-4'> 
-                <ItemList productos={productos} />
+                <ItemList products={products} />
             </div>
            
             }

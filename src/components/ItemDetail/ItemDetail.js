@@ -8,11 +8,11 @@ function ItemDetail({ item }) {
   
   const [goCart, setGoCart] = useState(false); 
 
-  const { cartList, agregarAlCarrito }= useCartContext()
+  const { cartList, addToCart }= useCartContext()
 
   const onAdd = (quantityToAdd) => {
     setGoCart(true); 
-    agregarAlCarrito({...item, cantidad: quantityToAdd})
+    addToCart({...item, quantity: quantityToAdd})
   }
 console.log(cartList)
   return (
@@ -26,9 +26,9 @@ console.log(cartList)
                         {`${item.cake}`}
                     </div>
                     <div className="card-body d-flex flex-column align-items-center">
-                        <img src={item.foto} alt='' className='w-50' />
-                            <p>{item.detalle}</p>
-                            <h4>Precio:${item.precio}</h4>
+                        <img src={item.photo} alt='' className='w-50' />
+                            <p>{item.detail}</p>
+                            <h4>Precio:${item.price}</h4>
                     </div>
                     <div className="card-footer d-flex flex-column align-items-center">
                     {!goCart ? (<ItemCount stock={item.stock} onAdd={onAdd} />

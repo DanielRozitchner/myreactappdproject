@@ -13,8 +13,8 @@ const NavBar = () => {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Link className='nav-link active' to="/categoria/minicakes"><h4>minicakes</h4></Link>
-        <Link className='nav-link active' to="/categoria/cakes"><h4>cakes</h4></Link>
+        <Link className='nav-link active' to="/category/minicakes"><h4>minicakes</h4></Link>
+        <Link className='nav-link active' to="/category/cakes"><h4>cakes</h4></Link>
 
       </Nav>
     </Navbar.Collapse>

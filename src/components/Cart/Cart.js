@@ -16,7 +16,7 @@ function Cart() {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false)
 
-    const { cartList, borrarCarrito, removeItem, totalPrice} = useCartContext([])
+    const { cartList, removeCart, removeItem, totalPrice} = useCartContext([])
 
     const handleChange = (e) => {
         setDataForm({
@@ -54,7 +54,7 @@ function Cart() {
 
     }
 
-    const generarOrden = (e) =>{
+    const generateOrder = (e) =>{
         e.preventDefault() 
         let errors = validate(dataForm)
         setFormErrors(errors) 
@@ -63,17 +63,17 @@ function Cart() {
         
         // Nuevo objeto de orders
         if (Object.keys(errors).length === 0 && isSubmit){    
-        let orden = {}
+        let order = {}
         
-        orden.date = Timestamp.fromDate(new Date())
-        orden.buyer = dataForm
-        orden.total = totalPrice();
+        order.date = Timestamp.fromDate(new Date())
+        order.buyer = dataForm
+        order.total = totalPrice();
 
-        orden.items = cartList.map(cartItem => {
+        order.items = cartList.map(cartItem => {
             const id = cartItem.id;
             const cake = cartItem.cake;
-            const quant = cartItem.cantidad
-            const price = cartItem.precio * cartItem.cantidad;
+            const quant = cartItem.quantity
+            const price = cartItem.price * cartItem.quantity;
 
             
             return {id, cake, price, quant}   
@@ -81,12 +81,12 @@ function Cart() {
 
         // Generar la orden 
         const db = getFirestore()
-        const ordenColeccion = collection(db, 'orders')
-        addDoc(ordenColeccion, orden)
+        const orderColeccion = collection(db, 'orders')
+        addDoc(orderColeccion, order)
         .then(resp => setIdOrder(resp.id))
         .catch(err => console.log(err))
         .finally(()=> {
-            borrarCarrito()
+            removeCart()
             setDataForm({
                 name:"", email:"", emailVal:"", phone:""
             })
@@ -96,8 +96,8 @@ function Cart() {
 
         const batch = writeBatch(db)
         
-        orden.items.map(e=>{
-                let docUpdate = doc(db, 'productos', e.id)
+        order.items.map(e=>{
+                let docUpdate = doc(db, 'products', e.id)
                 let currentStock  = cartList.find(item => item.id === e.id).stock
                 batch.update( docUpdate, {
                     stock: currentStock - e.quant
@@ -131,13 +131,13 @@ function Cart() {
                 { cartList.map(prod =>
                 <tr>
                     <td key= {prod.id}>
-                        <img src={prod.foto} alt='' className='img-fluid' width= '10%' />
+                        <img src={prod.photo} alt='' className='img-fluid' width= '10%' />
                     </td>
-                <td>{prod.categoria}</td>
+                <td>{prod.category}</td>
                 <td>{prod.cake}</td>
-                <td>{prod.cantidad}</td>
-                <td>${prod.precio}</td>
-                <td>${prod.precio * prod.cantidad}</td>
+                <td>{prod.quantiy}</td>
+                <td>${prod.price}</td>
+                <td>${prod.price * prod.quantity}</td>
                 <td><button onClick={()=> removeItem(prod.id)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
   <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
 </svg></button></td>
@@ -152,11 +152,11 @@ function Cart() {
                 </div>)
                 :  (<div><h3>Total: ${totalPrice()}</h3></div>)}
                     
-                <button className="btn btn-outline-primary btn-block"  disabled={!cartList.length} onClick={borrarCarrito}>Vaciar carrito</button>        
+                <button className="btn btn-outline-primary btn-block"  disabled={!cartList.length} onClick={removeCart}>Vaciar carrito</button>        
             
         
             <form 
-                onSubmit={generarOrden} 
+                onSubmit={generateOrder} 
                 
             >
                 <input 

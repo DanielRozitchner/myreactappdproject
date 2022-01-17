@@ -11,10 +11,10 @@ function Item({prod}) {
                         <h5>{prod.cake}</h5>
                     </div>
                     <div className="card-body d-flex flex-column align-items-center">
-                        <img src={prod.foto} alt='' className='img-fluid' />
+                        <img src={prod.photo} alt='' className='img-fluid' />
                     </div>
                     <div className="card-footer d-flex flex-column align-items-center">
-                    <Link to={`/detalle/${prod.id}`}>
+                    <Link to={`/detail/${prod.id}`}>
                     <button className="btn btn-outline-primary btn-block">
                         Detalle
                     </button>

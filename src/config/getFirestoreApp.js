@@ -15,3 +15,4 @@ const app = initializeApp(firebaseConfig);
 export const getFirestoreApp = () => {
     return app
 }
+
