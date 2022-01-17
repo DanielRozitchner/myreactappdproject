@@ -7,11 +7,15 @@ import { addDoc, collection, getFirestore, Timestamp, query, where, documentId, 
 
 
 function Cart() {
+    
 
     const [idOrder, setIdOrder] = useState('')
     const [dataForm, setDataForm] = useState({
         name:"", email:"", phone:""
     })
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false)
+
     const { cartList, borrarCarrito, removeItem, totalPrice} = useCartContext([])
 
     const handleChange = (e) => {
@@ -21,11 +25,38 @@ function Cart() {
         })
     }
 
+    const validate = (values) => {
+        const errors = {}
+        const regexMail = /^[^\s@]+@[^\@]+\.[^\s@]{2,}$/i;
+        const regexPhone = /^\(?\d{2}\)?[\s\.-]?\d{4}[\s\.-]?\d{4}$/;
+        const regexName = /^[a-z ,.'-]+$/i;
+        if (!values.name) {
+            errors.name = "El nombre es requerido!";
+        } else if (!regexName.test(values.name)){
+            errors.name = "El nombre no es valido"
+        }
+        if (!values.email) {
+            errors.email = "El email es requerido!";
+        } else if (!regexMail.test(values.email)){
+            errors.email = "El email no es valido!"
+        }
+        if (!values.phone) {
+            errors.phone = "El telefono es requerido!";
+        } else if (!regexPhone.test(values.phone)) {
+            errors.phone = "El Telefono no es valido"
+        }  
+        return errors;
+
+    }
+
     const generarOrden = (e) =>{
-        e.preventDefault()  
+        e.preventDefault() 
+        setFormErrors(validate(dataForm)); 
+        setIsSubmit(true)
         
         
-        // Nuevo objeto de orders    
+        // Nuevo objeto de orders
+        if (Object.keys(formErrors).length === 0 && isSubmit){    
         let orden = {}
         
         orden.date = Timestamp.fromDate(new Date())
@@ -72,6 +103,7 @@ function Cart() {
 
 
         }
+    }
 
 
     return (
@@ -107,9 +139,7 @@ function Cart() {
             )}
             </tbody>
         </table>
-        }
-            
-             
+        } 
             { !cartList.length ? (
                 <div><h3>tu carrito esta vacio</h3>
                 <Link to="/"><button className="btn btn-outline-primary btn-block">Seleccionar Productos</button></Link>
@@ -118,34 +148,41 @@ function Cart() {
                     
                 <button className="btn btn-outline-primary btn-block"  disabled={!cartList.length} onClick={borrarCarrito}>Vaciar carrito</button>        
             
-            
+        
             <form 
                 onSubmit={generarOrden} 
-                onChange={handleChange} 
+                
             >
                 <input 
                     type='text' 
                     name='name' 
                     placeholder='name' 
                     value={dataForm.name}
+                    onChange={handleChange} 
                 /><br />
+                <p>{formErrors.name}</p>
                 <input 
                     type='text' 
                     name='phone'
                     placeholder='tel' 
                     value={dataForm.phone}
+                    onChange={handleChange} 
                 /><br/>
+                <p>{formErrors.phone}</p>
                 <input 
                     type='email' 
                     name='email'
                     placeholder='email' 
                     value={dataForm.email}
+                    onChange={handleChange} 
                 /><br/>
+                <p>{formErrors.email}</p>
                 <button disabled={!cartList.length} >Generar Orden</button>
             </form>
-            {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
+           {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
         </>
     )
 }
 
 export default Cart
+ 
