@@ -51,12 +51,13 @@ function Cart() {
 
     const generarOrden = (e) =>{
         e.preventDefault() 
-        setFormErrors(validate(dataForm)); 
-        setIsSubmit(true)
+        let errors = validate(dataForm)
+        setFormErrors(errors) 
+        let isSubmit = (true)
         
         
         // Nuevo objeto de orders
-        if (Object.keys(formErrors).length === 0 && isSubmit){    
+        if (Object.keys(errors).length === 0 && isSubmit){    
         let orden = {}
         
         orden.date = Timestamp.fromDate(new Date())
@@ -174,7 +175,7 @@ function Cart() {
                     name='email'
                     placeholder='email' 
                     value={dataForm.email}
-                    onChange={handleChange} 
+                    onChange={handleChange}
                 /><br/>
                 <p>{formErrors.email}</p>
                 <button disabled={!cartList.length} >Generar Orden</button>
