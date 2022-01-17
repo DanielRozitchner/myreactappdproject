@@ -11,7 +11,7 @@ function Cart() {
 
     const [idOrder, setIdOrder] = useState('')
     const [dataForm, setDataForm] = useState({
-        name:"", email:"", phone:""
+        name:"", email:"", emailVal:"", phone:""
     })
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false)
@@ -39,6 +39,11 @@ function Cart() {
             errors.email = "El email es requerido!";
         } else if (!regexMail.test(values.email)){
             errors.email = "El email no es valido!"
+        }
+        if (!values.emailVal) {
+            errors.emailVal = "El email es requerido!";
+        } else if (values.email !== values.emailVal){
+            errors.emailVal = "El email no coincide con el campo correspondiente!"
         }
         if (!values.phone) {
             errors.phone = "El telefono es requerido!";
@@ -83,7 +88,7 @@ function Cart() {
         .finally(()=> {
             borrarCarrito()
             setDataForm({
-                name:"", email:"", phone:""
+                name:"", email:"", emailVal:"", phone:""
             })
         })
 
@@ -178,6 +183,14 @@ function Cart() {
                     onChange={handleChange}
                 /><br/>
                 <p>{formErrors.email}</p>
+                <input
+                    type='email'
+                    name='emailVal'
+                    placeholder='validar email'
+                    value={dataForm.emailVal}
+                    onChange={handleChange}
+                /><br/>
+                <p>{formErrors.emailVal}</p>
                 <button disabled={!cartList.length} >Generar Orden</button>
             </form>
            {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
