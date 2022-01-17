@@ -135,7 +135,7 @@ function Cart() {
                     </td>
                 <td>{prod.category}</td>
                 <td>{prod.cake}</td>
-                <td>{prod.quantiy}</td>
+                <td>{prod.quantity}</td>
                 <td>${prod.price}</td>
                 <td>${prod.price * prod.quantity}</td>
                 <td><button onClick={()=> removeItem(prod.id)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
