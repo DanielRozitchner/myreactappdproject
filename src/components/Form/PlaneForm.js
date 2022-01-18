@@ -1,10 +1,5 @@
-import React from 'react'
-import { useCartContext } from "../../context/CartContext"
-
-function PlaneForm({submitOrder, handler, formObj, errorsObj }) {
-
-    const { cartList} = useCartContext([])
-
+function PlaneForm({submitOrder, handler, formObj, errorsObj, cartOrder }) {
+    
     return (
             <div>
             <form 
@@ -42,7 +37,7 @@ function PlaneForm({submitOrder, handler, formObj, errorsObj }) {
                     onChange={handler}
                 /><br/>
                 <p>{errorsObj.emailVal}</p>
-                <button disabled={!cartList.length} >Generar Orden</button>
+                <button disabled={!cartOrder.length} >Generar Orden</button>
             </form>
         </div>
     )

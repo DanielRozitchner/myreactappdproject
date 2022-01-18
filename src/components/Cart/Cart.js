@@ -6,12 +6,12 @@ import TableCart from "../TableCart/TableCart"
 
 function Cart() {
 
-const { cartList, removeCart, totalPrice} = useCartContext([])
+const { cartList, removeCart, totalPrice, removeItem} = useCartContext([])
 
 
     return (
         <> 
-            <TableCart />
+            <TableCart cartOrder={cartList} itemRemove={removeItem} />
             { !cartList.length ? (
                 <div><h3>tu carrito esta vacio</h3>
                 <Link to="/"><button className="btn btn-outline-primary btn-block">Seleccionar Productos</button></Link>
@@ -19,7 +19,7 @@ const { cartList, removeCart, totalPrice} = useCartContext([])
                 :  (<div><h3>Total: ${totalPrice()}</h3></div>)}
                     
                 <button className="btn btn-outline-primary btn-block"  disabled={!cartList.length} onClick={removeCart}>Vaciar carrito</button>        
-            <Form />
+            <Form removeCart={removeCart} totalPrice={totalPrice}/>
         </>
     )
 }

@@ -3,8 +3,8 @@ import { addDoc, collection, getFirestore, Timestamp, writeBatch, doc} from 'fir
 import { useCartContext } from "../../context/CartContext"
 import PlaneForm from './PlaneForm'
 
-function Form() {
-    const { cartList, removeCart, totalPrice} = useCartContext([])
+function Form({removeCart, totalPrice}) {
+    const { cartList } = useCartContext([])
     const [idOrder, setIdOrder] = useState('')
     const [dataForm, setDataForm] = useState({
         name:"", email:"", emailVal:"", phone:""
@@ -106,7 +106,7 @@ function Form() {
 
     return (
         <div>
-          <PlaneForm submitOrder={generateOrder} handler={handleChange} formObj={dataForm} errorsObj={formErrors} />
+          <PlaneForm submitOrder={generateOrder} handler={handleChange} formObj={dataForm} errorsObj={formErrors} cartOrder={cartList} />
            {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
         </div>
     )
