@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { addDoc, collection, getFirestore, Timestamp, writeBatch, doc} from 'firebase/firestore'
 import { useCartContext } from "../../context/CartContext"
+import PlaneForm from './PlaneForm'
 
 function Form() {
     const { cartList, removeCart, totalPrice} = useCartContext([])
@@ -105,44 +106,7 @@ function Form() {
 
     return (
         <div>
-            <form 
-                onSubmit={generateOrder} 
-                
-            >
-                <input 
-                    type='text' 
-                    name='name' 
-                    placeholder='name' 
-                    value={dataForm.name}
-                    onChange={handleChange} 
-                /><br />
-                <p>{formErrors.name}</p>
-                <input 
-                    type='text' 
-                    name='phone'
-                    placeholder='tel' 
-                    value={dataForm.phone}
-                    onChange={handleChange} 
-                /><br/>
-                <p>{formErrors.phone}</p>
-                <input 
-                    type='email' 
-                    name='email'
-                    placeholder='email' 
-                    value={dataForm.email}
-                    onChange={handleChange}
-                /><br/>
-                <p>{formErrors.email}</p>
-                <input
-                    type='email'
-                    name='emailVal'
-                    placeholder='validar email'
-                    value={dataForm.emailVal}
-                    onChange={handleChange}
-                /><br/>
-                <p>{formErrors.emailVal}</p>
-                <button disabled={!cartList.length} >Generar Orden</button>
-            </form>
+          <PlaneForm submitOrder={generateOrder} handler={handleChange} formObj={dataForm} errorsObj={formErrors} />
            {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
         </div>
     )
