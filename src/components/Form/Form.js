@@ -88,7 +88,7 @@ function Form() {
 
         const batch = writeBatch(db)
         
-        order.items.map(e=>{
+        order.items.map(e => {
                 let docUpdate = doc(db, 'products', e.id)
                 let currentStock  = cartList.find(item => item.id === e.id).stock
                 batch.update( docUpdate, {

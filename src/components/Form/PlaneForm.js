@@ -9,8 +9,7 @@ function PlaneForm({submitOrder, handler, formObj, errorsObj }) {
             <div>
             <form 
                 onSubmit={submitOrder} 
-                
-            >
+                >
                 <input 
                     type='text' 
                     name='name' 
