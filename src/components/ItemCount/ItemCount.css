@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
 .botones {
     justify-content: center;
     width: 100vw;
@@ -10,50 +10,23 @@
         "Agregar Agregar Agregar";
 }
 .botonMenos {
-    background-color: lightcyan;
-    border: 0px;
     grid-area: botonMenos;
-    border-radius: 5px;
-}
-.botonMenos:focus{
-    color: grey;
-    font-size: 1.2em;
-
 }
 .botonMas {
-    border: 0px;
-    background-color: lightcyan;
     grid-area: botonMas;
-    border-radius: 5px;
-}
-.botonMas:focus{
-    color: grey;
-    font-size: 1.2em;
-
 }
 span {
     grid-area: s;
     display: flex;
     justify-content: center;
     padding-top: 6px;
+    font-weight: 900;
 }
 .Agregar {
-    background-color: lightcyan;
     grid-area: Agregar;
-    
-
-   
-    
-    
-    
-}
-.Agregar:focus{
-    color: grey;
-    
-}
-
-button:hover {
-    background-color: lightsalmon;
+    font-weight: 800;
+    font-family: Lato;
 
 }
+
 

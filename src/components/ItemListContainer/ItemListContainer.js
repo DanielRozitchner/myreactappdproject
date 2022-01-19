@@ -4,6 +4,7 @@ import ItemList from '../ItemList/ItemList'
 import { collection, getFirestore, getDocs, where, query } from 'firebase/firestore'
 import { css } from "@emotion/react";
 import { GridLoader } from 'react-spinners';
+import "./ItemListContainer.css";
 
 function ItemListContainer({greeting}) {
     const [products, setProducts] = useState([])
@@ -24,7 +25,7 @@ function ItemListContainer({greeting}) {
         },[idCate])
     
         return (
-        <div className='container d-flex flex-column align-items-center'>
+        <div className='container d-flex flex-column align-items-center listContainer'>
             <h1>{greeting} </h1>
             {loading ?
             <h2><GridLoader css={css} /></h2>

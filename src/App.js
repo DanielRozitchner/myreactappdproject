@@ -4,7 +4,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import NavBar from './components/NavBar';
 import CartContextProvider from './context/CartContext';
-import './styles/styles.css'  
+
 
 function App() {
   
@@ -12,7 +12,7 @@ function App() {
   return (
 <CartContextProvider>
   <BrowserRouter>
-    <div className="App">
+    <div className="app">
       <NavBar />
       <Routes>
           <Route path="*"

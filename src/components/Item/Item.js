@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import "./Item.css"
 
 function Item({prod}) {
     return (
@@ -10,12 +11,13 @@ function Item({prod}) {
                     <div className="card-header d-flex flex-column align-items-center">
                         <h5>{prod.cake}</h5>
                     </div>
-                    <div className="card-body d-flex flex-column align-items-center">
-                        <img src={prod.photo} alt='' className='img-fluid' />
+                    <div className="card-body d-flex flex-column align-items-center justify-content-around">
+                        <img src={prod.photo} alt='' className='img-fluid imgItem' />
+                        <p>${prod.price}</p>
                     </div>
                     <div className="card-footer d-flex flex-column align-items-center">
                     <Link to={`/detail/${prod.id}`}>
-                    <button className="btn btn-outline-primary btn-block">
+                    <button className="btn btnItem btn-outline-primary btn-block">
                         Detalle
                     </button>
                     </Link>

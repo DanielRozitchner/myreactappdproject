@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+
+.listContainer {
+    background-color: rgb(182, 182, 182);
+}
+.container, .container-md, .container-sm {
+    max-width: 100%!important;
+}
+
+h1 {
+    font-family: Lato;
+    padding-top: 20px;
+    font-weight:900;
+    color: rgb(0, 0, 0);
+}

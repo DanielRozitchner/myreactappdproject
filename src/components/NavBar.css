@@ -1,11 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
 
-.logo {
-    width: 20%;
-    height: 20%;
+
+
+.nav {
+    background-color: rgb(184, 147, 147)!important;
+    margin: 0px!important;
+    width:100%;
 }
 
+.navLinks{
+    width: 75%;
+}
+.logoContainer {
+    width:10%
+}
+
+
+
+
+.nav-link:hover{
+color:rgb(255, 209, 209)!important;
+}
+.logo {
+    width: 80%;
+    height: 80%;
+    position: relative; 
+  display: block;
+  text-align: center;
+  line-height: 63px;
+  border-radius: 50%;
+  transition: .5s;
+}
+.logo::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgb(255, 209, 209)!important;
+    transition: .5s;
+    transform: scale(.9);
+    z-index: -1;
+    
+}
+.cartButton:hover::before, .logo:hover::before{
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgb(255, 209, 209)!important;
+}
+.cartButton:hover, .logo:hover{
+    color: rgb(255, 209, 209)!important;
+    box-shadow: 0 0 5px rgb(255, 209, 209)!important;
+    text-shadow: 0 0 5px rgb(255, 209, 209)!important;
+}
 h4 {
     font-family: Lato;
     font-size: 30px;
+    padding-left: 10px;
+}
+.cartButton{
+    text-decoration: none;
 }
