@@ -19,8 +19,7 @@ function ItemListContainer({greeting}) {
             query(collection(db, 'productos'))
        
         getDocs(queryCollection)
-            .then(resp => setProducts( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) ) 
-            .catch(err => console.log(err))
+            .then(resp => setProducts( resp.docs.map( prod=> ({ id: prod.id, ...prod.data() }) ) ) )
             .finally(()=> setLoading(false))
         },[idCate])
     

@@ -18,7 +18,7 @@ import "./ItemCount.css";
                 <button className='botonMenos btn btnItem btn-block d-flex flex-column justify-content-center align-items-center' onClick={handleSub}>-</button>
                 <span>{value}</span>
                 <button className='botonMas btn btnItem btn-block d-flex flex-column justify-content-center align-items-center' onClick={handleAdd}>+</button>
-                <button disabled={value === 0} onClick={()=> onAdd(value)} className="btn btnItem btn-block Agregar d-flex flex-column justify-content-center align-items-center">Agregar al carrito</button>
+                <button disabled={value === 0} onClick={()=> onAdd(value)} className="btn btnItem btn-outline-primary btn-block Agregar d-flex flex-column justify-content-center align-items-center">Agregar al carrito</button>
             </div>
     )
 }

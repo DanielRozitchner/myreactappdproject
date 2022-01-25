@@ -3,10 +3,7 @@ import "./Item.css"
 
 function Item({prod}) {
     return (
-        <div
-            key={prod.id}
-            className='col'
-                                        >
+        <div className='col'>
                 <div className="card w-100 mt-5" >
                     <div className="card-header d-flex flex-column align-items-center">
                         <h5>{prod.cake}</h5>

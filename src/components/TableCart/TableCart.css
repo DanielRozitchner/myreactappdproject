@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+
+table {
+    margin-top: 15px;
+    font-family: Lato;
+}
+thead, tbody {
+    border-width: 3px;
+    border-color: rgb(233, 192, 192)!important;
+}
+.imgTd {
+    width: 10%;
+    height: auto;
+}

@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount"
 
-
 function ItemDetail({ item }) {
   
   const [goCart, setGoCart] = useState(false); 
 
-  const { cartList, addToCart }= useCartContext()
+  const {addToCart }= useCartContext()
 
   const onAdd = (quantityToAdd) => {
     setGoCart(true); 
     addToCart({...item, quantity: quantityToAdd})
   }
-console.log(cartList)
   return (
     <div className="d-flex flex-column align-items-center">
       <div

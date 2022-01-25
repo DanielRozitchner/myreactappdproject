@@ -1,0 +1,68 @@
+.formDiv {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width:100%;
+    margin: 20px;
+}
+
+form{
+    background: rgb(170, 163, 201);
+    width: 35%;
+    padding: 10px 0;
+
+}
+.groupForm{
+    margin: 10px;
+}
+
+input{
+    background: none;
+    color:#000000;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border:none;
+}
+
+input:focus{
+    outline: none;
+}
+
+input:focus~.bar::before, .bar::before{
+    width: 100%;
+}
+
+.bar{
+    position: relative;
+    display: block;
+    width: 100%;}
+    
+.bar::before{
+    content: '';
+    height: 3px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to right, #f3cfee, rgb(255, 122, 173));
+    transition: 0.8s ease all;
+    left: 0%;
+    }
+    .buttonForm{
+
+        /* background: linear-gradient(to right, #f3cfee,  rgb(233, 192, 192)); */
+        display: block;
+        font-family: Lato; 
+        margin: 10px auto;
+
+    } 
+    
+.p {
+    color: rgb(209, 74, 74);
+    font-family: Lato;
+    font-weight: 600;
+    padding: 5px;
+}
+
+

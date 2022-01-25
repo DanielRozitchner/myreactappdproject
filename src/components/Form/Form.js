@@ -3,6 +3,7 @@ import { addDoc, collection, getFirestore, Timestamp, writeBatch, doc} from 'fir
 import { useCartContext } from "../../context/CartContext"
 import PlaneForm from './PlaneForm'
 
+
 function Form({removeCart, totalPrice}) {
     const { cartList } = useCartContext([])
     const [idOrder, setIdOrder] = useState('')
@@ -76,7 +77,6 @@ function Form({removeCart, totalPrice}) {
         const orderColeccion = collection(db, 'orders')
         addDoc(orderColeccion, order)
         .then(resp => setIdOrder(resp.id))
-        .catch(err => console.log(err))
         .finally(()=> {
             removeCart()
             setDataForm({
@@ -88,8 +88,8 @@ function Form({removeCart, totalPrice}) {
 
         const batch = writeBatch(db)
         
-        order.items.map(e => {
-                let docUpdate = doc(db, 'products', e.id)
+        order.items.forEach(e => {
+                let docUpdate = doc(db, 'productos', e.id)
                 let currentStock  = cartList.find(item => item.id === e.id).stock
                 batch.update( docUpdate, {
                     stock: currentStock - e.quant
@@ -105,11 +105,12 @@ function Form({removeCart, totalPrice}) {
 
 
     return (
-        <div>
+        <div className='d-flex flex-column justify-content-center align-items-center'>
           <PlaneForm submitOrder={generateOrder} handler={handleChange} formObj={dataForm} errorsObj={formErrors} cartOrder={cartList} />
-           {idOrder.length !== 0 && <h3>Orden finalizada, comprobante numero: {idOrder}</h3>}
+           {idOrder.length !== 0 &&
+                <h3>Tu orden de compra ha sido confirmada con el comprobante Nº: {idOrder}</h3>}
         </div>
     )
-}
+} 
 
 export default Form

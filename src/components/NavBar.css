@@ -5,7 +5,8 @@
 .nav {
     background-color: rgb(184, 147, 147)!important;
     margin: 0px!important;
-    width:100%;
+    padding:0;
+
 }
 
 .navLinks{

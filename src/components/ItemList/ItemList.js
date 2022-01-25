@@ -5,7 +5,7 @@ const ItemList = memo(
     ({ products }) => {
         return (
         <>
-            {products.map((prod) => <Item prod={prod} />
+            {products.map((prod) => <Item prod={prod} key={prod.id} />
             )}
         </>
         )
