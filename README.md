@@ -11,7 +11,7 @@ Mantuve el css simple con una paleta de colores que acompañe el producto y la f
 
 ### Para clonar este repositorio
 ```sh
-https://github.com/DanielRozitchner/myreactappdproject
+https://github.com/DanielRozitchner/myreactappproject.git
 ```
 
 ### Construido con:
