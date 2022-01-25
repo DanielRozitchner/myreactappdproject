@@ -23,22 +23,22 @@ function App() {
               exact
               path="/"
               element= { <ItemListContainer greeting='Nuestras Tortas'/> }
-           />
-           <Route
+          />
+          <Route
               exact
               path="/category/:idCate"
               element= { <ItemListContainer greeting='Nuestras Tortas'/> }
-              />
-            <Route
+          />
+          <Route
               exact
               path="/detail/:id"
               element= { <ItemDetailContainer /> }
               />
-             <Route
+          <Route
               exact
               path="/cart"
               element= { <Cart /> }
-              />
+          />
             
       </Routes>
     </div>

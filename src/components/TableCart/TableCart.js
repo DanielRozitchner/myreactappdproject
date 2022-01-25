@@ -10,7 +10,7 @@ function TableCart({cartOrder, itemRemove}) {
                     <thead>
                         <tr>
                             <th scope="col">Img</th>
-                            <th scope="col">Categoria</th>
+                            <th scope="col">Categoría</th>
                             <th scope="col">Torta</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Precio</th>

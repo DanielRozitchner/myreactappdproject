@@ -25,8 +25,8 @@ function CartContextProvider( {children} ) {
       
       
       if (index > -1) {
- 
-        const located = cartList[index].quantity
+
+      const located = cartList[index].quantity
 
         cartList.splice(index, 1)
 
@@ -37,28 +37,31 @@ function CartContextProvider( {children} ) {
       }
     
     }
+    
     function removeCart() {
       setCartList([])
     }
+    
     const removeItem = (itemId) =>{
       const newCart = cartList.filter(item => item.id !== itemId)
       setCartList(newCart)
-  }
-  function totalPrice() {
-    return cartList.map(prod =>prod.quantity * prod.price).reduce((a,b)=>a+b)
-  }
+    }
+  
+    function totalPrice() {
+      return cartList.map(prod =>prod.quantity * prod.price).reduce((a,b)=>a+b)
+    }
     
     return (
-       <CartContext.Provider value={ {
+      <CartContext.Provider value={ {
           cartList,
           cartLength,
           addToCart,
           removeCart,
           removeItem,
           totalPrice
-       }}>
+      }}>
             { children }
-       </CartContext.Provider>
+      </CartContext.Provider>
     )
 }
 
