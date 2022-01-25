@@ -14,6 +14,7 @@ function App() {
   <BrowserRouter>
     <div className="app">
       <NavBar />
+      
       <Routes>
           <Route path="*"
           element= { <Navigate to="/" /> }
