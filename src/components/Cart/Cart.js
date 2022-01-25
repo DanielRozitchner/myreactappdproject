@@ -19,7 +19,7 @@ const { cartList, removeCart, totalPrice, removeItem} = useCartContext([])
                 </div>)
                 :  (<div className="totalContainer"><h3 className="totalPrice">Total: ${totalPrice()}</h3></div>)}
                     
-                <div className="d-flex justify-content-center align-items-center"><button className="btn btnItem btn-outline-primary btn-block removeCartStyle"  disabled={!cartList.length} onClick={removeCart}>Vaciar carrito</button></div>     
+                <div className="d-flex justify-content-center align-items-center"><button className="btn btnItem btn-outline-primary btn-block   removeCartStyle"  disabled={!cartList.length} onClick={removeCart}>Vaciar carrito</button></div>     
             <Form removeCart={removeCart} totalPrice={totalPrice}/>
         </>
     )
