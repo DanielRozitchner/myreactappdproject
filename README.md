@@ -7,11 +7,11 @@ Es un eccomerce de pasteleria. Trate de cumplir con todos los desafios y compone
 Mantuve el css simple con una paleta de colores que acompañe el producto y la funcionalidad de la app.
 
 ## Implementación en vivo
-netlify
+[Link ECOMMERCE](https://link-url-here.org)
 
 ### Para clonar este repositorio
 ```sh
-[https://github.com/DanielRozitchner/myreactappdproject]
+https://github.com/DanielRozitchner/myreactappdproject
 ```
 
 ### Construido con:
@@ -27,4 +27,9 @@ Este proyecto se inición con Create React App:
 npx create-react-app reactdanielrozitchner
 cd reactdanielrozitchner
 npm install
+```
+## Aplicación en modo de desarrollo
+
+```sh
+npm start
 ```
