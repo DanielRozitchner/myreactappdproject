@@ -8,7 +8,7 @@ function Form({removeCart, totalPrice}) {
     const { cartList } = useCartContext([])
     const [idOrder, setIdOrder] = useState('')
     const [dataForm, setDataForm] = useState({
-        name:"", email:"", emailVal:"", phone:""
+        name:"", lastname:"", email:"", emailVal:"", phone:""
     })
     const [formErrors, setFormErrors] = useState({});
 
@@ -27,12 +27,17 @@ function Form({removeCart, totalPrice}) {
         if (!values.name) {
             errors.name = "El nombre es requerido!";
         } else if (!regexName.test(values.name)){
-            errors.name = "El nombre no es valido"
+            errors.name = "El nombre no es válido"
+        }
+        if (!values.lastname) {
+            errors.lastname = "El apellido es requerido!";
+        } else if (!regexName.test(values.lastname)){
+            errors.lastname = "El apellido no es válido"
         }
         if (!values.email) {
             errors.email = "El email es requerido!";
         } else if (!regexMail.test(values.email)){
-            errors.email = "El email no es valido!"
+            errors.email = "El email no es válido"
         }
         if (!values.emailVal) {
             errors.emailVal = "El email es requerido!";
@@ -40,9 +45,9 @@ function Form({removeCart, totalPrice}) {
             errors.emailVal = "El email no coincide con el campo correspondiente!"
         }
         if (!values.phone) {
-            errors.phone = "El telefono es requerido!";
+            errors.phone = "El teléfono es requerido!";
         } else if (!regexPhone.test(values.phone)) {
-            errors.phone = "El Telefono no es valido"
+            errors.phone = "El teléfono no es válidoo"
         }  
         return errors;
 
@@ -80,7 +85,7 @@ function Form({removeCart, totalPrice}) {
         .finally(()=> {
             removeCart()
             setDataForm({
-                name:"", email:"", emailVal:"", phone:""
+                name:"", lastname:"", email:"", emailVal:"", phone:""
             })
         })
 

@@ -13,7 +13,7 @@ function PlaneForm({submitOrder, handler, formObj, errorsObj, cartOrder }) {
                             <input 
                                 type='text' 
                                 name='name' 
-                                placeholder='name' 
+                                placeholder='Nombre' 
                                 value={formObj.name}
                                 onChange={handler} 
                             />
@@ -25,8 +25,21 @@ function PlaneForm({submitOrder, handler, formObj, errorsObj, cartOrder }) {
                         <div className="groupForm">
                             <input 
                                 type='text' 
+                                name='lastname' 
+                                placeholder='Apellido' 
+                                value={formObj.lastname}
+                                onChange={handler} 
+                            />
+                            <span className="bar"></span>
+                        </div>
+                        <p className="p">{errorsObj.lastname}</p>
+                    </div>
+                    <div className="d-flex flex-row align-items-center justify-content-between">
+                        <div className="groupForm">
+                            <input 
+                                type='text' 
                                 name='phone'
-                                placeholder='tel' 
+                                placeholder='Tel' 
                                 value={formObj.phone}
                                 onChange={handler} 
                             />
@@ -39,7 +52,7 @@ function PlaneForm({submitOrder, handler, formObj, errorsObj, cartOrder }) {
                             <input 
                                 type='email' 
                                 name='email'
-                                placeholder='email' 
+                                placeholder='Email' 
                                 value={formObj.email}
                                 onChange={handler}
                             />
@@ -52,7 +65,7 @@ function PlaneForm({submitOrder, handler, formObj, errorsObj, cartOrder }) {
                             <input
                                 type='email'
                                 name='emailVal'
-                                placeholder='validar email'
+                                placeholder='Validar email'
                                 value={formObj.emailVal}
                                 onChange={handler}
                             />
